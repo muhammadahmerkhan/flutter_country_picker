@@ -130,39 +130,24 @@ class _CountryListViewState extends State<CountryListView> {
       children: <Widget>[
         const SizedBox(height: 20),
         Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 70),
+              child: Text(
+                "Select Country Code",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-            ),
-            const Expanded(
-              child: SizedBox(),
-            ),
-            const Expanded(
-              flex: 3,
-              child: Row(
-                children: [
-                  Text(
-                    "Select Country Code",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                ],
-              ),
-            ),
-            const Expanded(
-              flex: 2,
-              child: SizedBox(),
             ),
           ],
         ),
