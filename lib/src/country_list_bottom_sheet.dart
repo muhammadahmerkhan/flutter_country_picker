@@ -62,10 +62,12 @@ Widget _builder(
 ) {
   final device = MediaQuery.of(context).size.height;
   final statusBarHeight = MediaQuery.of(context).padding.top;
-  final height = countryListTheme?.bottomSheetHeight ?? device - (statusBarHeight + (kToolbarHeight / 1.5));
+  final height = countryListTheme?.bottomSheetHeight ??
+      device - (statusBarHeight + (kToolbarHeight / 1.5));
   final width = countryListTheme?.bottomSheetWidth;
 
-  Color? _backgroundColor = countryListTheme?.backgroundColor ?? Theme.of(context).bottomSheetTheme.backgroundColor;
+  Color? _backgroundColor = countryListTheme?.backgroundColor ??
+      Theme.of(context).bottomSheetTheme.backgroundColor;
 
   if (_backgroundColor == null) {
     if (Theme.of(context).brightness == Brightness.light) {
@@ -77,33 +79,52 @@ Widget _builder(
 
   final BorderRadius _borderRadius = countryListTheme?.borderRadius ??
       const BorderRadius.only(
-        topLeft: Radius.circular(40.0),
-        topRight: Radius.circular(40.0),
+        topLeft: Radius.circular(24.0),
+        topRight: Radius.circular(24.0),
       );
 
-  return Padding(
-    padding: moveAlongWithKeyboard ? MediaQuery.of(context).viewInsets : EdgeInsets.zero,
-    child: Container(
-      height: height,
-      width: width,
-      padding: countryListTheme?.padding,
-      margin: countryListTheme?.margin,
-      decoration: BoxDecoration(
-        color: _backgroundColor,
-        borderRadius: _borderRadius,
-      ),
-      child: CountryListView(
-        onSelect: onSelect,
-        exclude: exclude,
-        favorite: favorite,
-        countryFilter: countryFilter,
-        showPhoneCode: showPhoneCode,
-        countryListTheme: countryListTheme,
-        searchAutofocus: searchAutofocus,
-        showWorldWide: showWorldWide,
-        showSearch: showSearch,
-        customFlagBuilder: customFlagBuilder,
-      ),
+  return SingleChildScrollView(
+    child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6),
+          child: Container(
+            height: 10,
+            width: 60,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
+        ),
+        Padding(
+          padding: moveAlongWithKeyboard
+              ? MediaQuery.of(context).viewInsets
+              : EdgeInsets.zero,
+          child: Container(
+            height: height,
+            width: width,
+            padding: countryListTheme?.padding,
+            margin: countryListTheme?.margin,
+            decoration: BoxDecoration(
+              color: _backgroundColor,
+              borderRadius: _borderRadius,
+            ),
+            child: CountryListView(
+              onSelect: onSelect,
+              exclude: exclude,
+              favorite: favorite,
+              countryFilter: countryFilter,
+              showPhoneCode: showPhoneCode,
+              countryListTheme: countryListTheme,
+              searchAutofocus: searchAutofocus,
+              showWorldWide: showWorldWide,
+              showSearch: showSearch,
+              customFlagBuilder: customFlagBuilder,
+            ),
+          ),
+        ),
+      ],
     ),
   );
 }
