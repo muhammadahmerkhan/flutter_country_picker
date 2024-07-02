@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
               //Optional. Shows phone code before the country name.
               showPhoneCode: true,
               onSelect: (Country country) {
-                print('Select country: ${country.displayName}');
+                print('Select country: ${country.isoCode}');
               },
               // Optional. Sheet moves when keyboard opens.
               moveAlongWithKeyboard: false,
